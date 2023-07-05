@@ -1,0 +1,78 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "mspOfferName": {
+            "type": "string",
+            "value": "CMC Telecom Managed Services"
+        },
+        "mspOfferDescription": {
+            "type": "string",
+            "value": "CMC Telecom trien khai sau Billing"
+        },
+        "managedByTenantId": {
+            "type": "string",
+            "value": "531ff7cb-d1ee-4fd7-921b-d3df413aa03a"
+        },
+        "authorizations": {
+            "type": "array",
+            "value": [
+                { 
+                    "principalId": "1f4d1d1f-653f-4799-90f3-aa1cabf5f338", 
+                    "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
+                    "principalIdDisplayName": "Reader"
+                },
+                { 
+                    "principalId": "1f4d1d1f-653f-4799-90f3-aa1cabf5f338", 
+                    "roleDefinitionId": "434105ed-43f6-45c7-a02f-909b2ba83430",
+                    "principalIdDisplayName": "Cost Management Contributor"			
+                }, 
+                { 
+                    "principalId": "1f4d1d1f-653f-4799-90f3-aa1cabf5f338", 
+                    "roleDefinitionId": "cfd33db0-3dd1-45e3-aa9d-cdbdf3b6f24e",
+                    "principalIdDisplayName": "Support Request Contributor"
+                },
+                { 
+                    "principalId": "1f4d1d1f-653f-4799-90f3-aa1cabf5f338", 
+                    "roleDefinitionId": "91c1777a-f3dc-4fae-b103-61d183457e46",
+                    "principalIdDisplayName": "Managed Services Registration assignment Delete Role"
+                },
+                { 
+                    "principalId": "1f4d1d1f-653f-4799-90f3-aa1cabf5f338", 
+                    "roleDefinitionId": "f7b75c60-3036-4b75-91c3-6b41c27c1689",
+                    "principalIdDisplayName": "Reservation Purchaser"
+                }
+            ]
+        }
+    },
+    "variables": {
+        "mspRegistrationName": "[guid(parameters('mspOfferName'))]",
+        "mspAssignmentName": "[guid(parameters('mspOfferName'))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.ManagedServices/registrationDefinitions",
+            "apiVersion": "2019-09-01",
+            "name": "[variables('mspRegistrationName')]",
+            "properties": {
+                "registrationDefinitionName": "[parameters('mspOfferName')]",
+                "description": "[parameters('mspOfferDescription')]",
+                "managedByTenantId": "[parameters('managedByTenantId')]",
+                "authorizations": "[parameters('authorizations')]"
+            }
+        },
+        {
+            "type": "Microsoft.ManagedServices/registrationAssignments",
+            "apiVersion": "2019-09-01",
+            "name": "[variables('mspAssignmentName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ManagedServices/registrationDefinitions/', variables('mspRegistrationName'))]"
+            ],
+            "properties": {
+                "registrationDefinitionId": "[resourceId('Microsoft.ManagedServices/registrationDefinitions/', variables('mspRegistrationName'))]"
+            }
+        }
+    ],
+    "outputs": {}
+}
+

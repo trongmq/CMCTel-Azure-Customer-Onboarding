@@ -1,20 +1,30 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",  
   "contentVersion": "1.0.0.0",
-  "resources": [
-      {
-        "type": "Microsoft.Resources/resourceGroups",
-        "apiVersion": "2021-04-01",
-        "location": "southeastasia",
-        "name": "CMCTel_CostAlert",
-        "properties": {} 
-      },
+  "resources":[
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2021-04-01",
+      "location": "southeastasia",
+      "name": "CMCTel_CostAlert",
+      "properties": {} 
+    },
+    {
+    "type": "Microsoft.Resources/deployments",
+    "apiVersion": "2020-06-01",
+    "name": "nestedDeployment",
+    "location": "Southeast Asia",
+    "properties": {
+        "mode": "Incremental",
+        "template": {
+        "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "resources": [
       {
         "type": "microsoft.insights/actionGroups",
         "apiVersion": "2019-06-01",
         "dependsOn": [
-          "[resourceId('Microsoft.Resources/resourceGroups', 'CMCTel_CostAlert')]"
-        ],
+          "[resourceId('Microsoft.Resources/resourceGroups', 'CMCTel_CostAlert')]"  ],
         "name": "cmctel-actiongroup",
         "location": "Global",
         "properties": {
@@ -29,16 +39,19 @@
                   "objectId": null,
                   "identifierUri": null,
                   "tenantId": null
-              }
+              } 
             ]
+          }
         }
-      },
+      ]
+     }
+    }
+  },
       {
           "type": "Microsoft.Resources/deployments",
           "apiVersion": "2020-06-01",
           "name": "nestedDeployment",
           "location": "Southeast Asia",
-          "subscriptionId": "d94751e3-0e7d-4b86-9415-1b056a399539",
           "properties": {
               "mode": "Incremental",
               "template": {
@@ -70,7 +83,12 @@
                     ]
                   }
           }
-      }
-  ],
-  "outputs": {}
+      } ],
+  "outputs": {} 
 }
+
+
+
+
+
+

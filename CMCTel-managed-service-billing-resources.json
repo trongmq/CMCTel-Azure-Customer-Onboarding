@@ -28,7 +28,10 @@
                   "tenantId": null
               }
             ]
-        }
+        },
+        "dependsOn": [
+          "[resourceId('Microsoft.Resources/resourceGroups', parameters('resourceGroupName'))]"
+        ]
       },
       {
           "type": "Microsoft.Resources/deployments",

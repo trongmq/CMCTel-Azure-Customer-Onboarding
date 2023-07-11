@@ -3,23 +3,29 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "mspOfferName": {
-            "type": "string"
+            "type": "string",
+            "metadata": {
+                "description": "Specify a unique name for your offer"
+            }
         },
         "mspOfferDescription": {
-            "type": "string"
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Managed Service Provider offering"
+            }
         },
         "managedByTenantId": {
-            "type": "string"
+            "type": "string",
+            "metadata": {
+                "description": "Specify the tenant id of the Managed Service Provider"
+            }
         },
         "authorizations": {
-            "type": "array"
-        },
-        "actionGroupName": {
-            "type": "string"
-        },
-          "actionGroupShortName": {
-            "type": "string"
-        } 
+            "type": "array",
+            "metadata": {
+                "description": "Specify an array of objects, containing tuples of Azure Active Directory principalId, a Azure roleDefinitionId, and an optional principalIdDisplayName. The roleDefinition specified is granted to the principalId in the provider's Active Directory and the principalIdDisplayName is visible to customers."
+            }
+        }              
     },
     "variables": {
         "mspRegistrationName": "[guid(parameters('mspOfferName'))]",

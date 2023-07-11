@@ -30,7 +30,7 @@
             ]
         },
         "dependsOn": [
-          "[resourceId('Microsoft.Resources/resourceGroups', parameters('resourceGroupName'))]"
+          "[resourceId('Microsoft.Resources/resourceGroups', 'CMCTel_CostAlert')]"
         ]
       },
       {

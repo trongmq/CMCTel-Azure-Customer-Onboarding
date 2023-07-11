@@ -6,7 +6,7 @@
         "type": "Microsoft.Resources/resourceGroups",
         "apiVersion": "2021-04-01",
         "location": "southeastasia",
-        "name": "CMCCostAlert",
+        "name": "CMCTel_CostAlert",
         "properties": {} 
       },
       {

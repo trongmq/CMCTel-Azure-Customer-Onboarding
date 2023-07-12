@@ -4,68 +4,43 @@
   "resources":[
     {
       "type": "Microsoft.Resources/resourceGroups",
-      "apiVersion": "2021-04-01",
+      "apiVersion": "2018-05-01",
       "location": "southeastasia",
-      "name": "CMCTel_CostAlert",
-      "properties": {} 
+      "name": "CMCTel_CostAlert"
     },
-    {
-      "type": "microsoft.insights/actionGroups",
-      "apiVersion": "2019-06-01",
-      "dependsOn": [
-        "[resourceId('Microsoft.Resources/resourceGroups', 'CMCTel_CostAlert')]"  ],
-      "name": "cmctel-actiongroup",
-      "location": "Global",
-      "properties": {
-          "groupShortName": "cmctel-ag",
-          "enabled": true,
-          "webhookReceivers": [
-            {
-                "name": "cmctel-webook",
-                "serviceUri": "https://okzpg7ajkqvlwg3ftxqfvx73vm0iqaqb.lambda-url.us-east-1.on.aws/",
-                "useCommonAlertSchema": true,
-                "useAadAuth": false,
-                "objectId": null,
-                "identifierUri": null,
-                "tenantId": null
-            }
-          ]
-        }
-   }
     {
           "type": "Microsoft.Resources/deployments",
           "apiVersion": "2020-06-01",
           "name": "nestedDeployment",
-          "location": "Southeast Asia",
           "properties": {
               "mode": "Incremental",
               "template": {
               "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",  
               "contentVersion": "1.0.0.0",
               "resources": [ 
-                  {
-                      "type": "Microsoft.Consumption/budgets",
-                      "apiVersion": "2019-10-01",
-                      "name": "Monthly_Budget_[TênBudget]_[SubID]",
-                      "properties": {
-                          "timePeriod": {
-                              "startDate": "2023-07-01",
-                              "endDate": "2033-07-01"
-                          },
-                          "timeGrain": "Monthly",
-                          "amount": "1",
-                          "category": "Cost",
-                          "notifications": {
-                              "NotificationForExceededBudget1": {
-                                  "enabled": true,
-                                  "operator": "GreaterThan",
-                                  "threshold": "90",
-                                  "contactEmails": ["Msoc.alert@cmctelecom.vn"],
-                                  "contactGroups": "[resourceId('microsoft.insights/actionGroups','cmctel-actiongroup')]"                                 
-                                }
-                              }
-                            }   
-                          }
+                {
+                  "type": "microsoft.insights/actionGroups",
+                  "apiVersion": "2019-06-01",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.Resources/resourceGroups', 'CMCTel_CostAlert')]"  ],
+                  "name": "cmctel-actiongroup",
+                  "location": "Global",
+                  "properties": {
+                      "groupShortName": "cmctel-ag",
+                      "enabled": true,
+                      "webhookReceivers": [
+                        {
+                            "name": "cmctel-webook",
+                            "serviceUri": "https://okzpg7ajkqvlwg3ftxqfvx73vm0iqaqb.lambda-url.us-east-1.on.aws/",
+                            "useCommonAlertSchema": true,
+                            "useAadAuth": false,
+                            "objectId": null,
+                            "identifierUri": null,
+                            "tenantId": null
+                        }
+                      ]
+                    }
+               }
                         ]
                       }
                     }
@@ -73,9 +48,3 @@
                 ],
   "outputs": {} 
 }
-
-
-
-
-
-

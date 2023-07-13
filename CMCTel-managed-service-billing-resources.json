@@ -6,7 +6,7 @@
       "type": "microsoft.insights/actionGroups",
       "apiVersion": "2019-06-01",
       "dependsOn": [
-        "[resourceId('Microsoft.Resources/resourceGroups', 'CMCTel_CostAlert')]"  ],
+        "[resourceId('Microsoft.Resources/resourceGroups','CMCTel_CostAlert')]"  ],
       "name": "cmctel-actiongroup",
       "location": "Global",
       "properties": {

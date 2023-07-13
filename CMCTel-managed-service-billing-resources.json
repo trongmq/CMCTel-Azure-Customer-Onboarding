@@ -3,6 +3,12 @@
   "contentVersion": "1.0.0.0",
   "resources":[
     {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2018-05-01",
+      "location": "southeastasia",
+      "name": "CMCTel_CostAlert"
+    },
+    {
       "type": "microsoft.insights/actionGroups",
       "apiVersion": "2019-06-01",
       "dependsOn": [

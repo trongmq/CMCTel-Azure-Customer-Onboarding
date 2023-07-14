@@ -25,6 +25,11 @@
                 }, 
                 { 
                     "principalId": "1f4d1d1f-653f-4799-90f3-aa1cabf5f338", 
+                    "roleDefinitionId": "749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+                    "principalIdDisplayName": "Monitoring Contributor"
+                },
+                { 
+                    "principalId": "1f4d1d1f-653f-4799-90f3-aa1cabf5f338", 
                     "roleDefinitionId": "cfd33db0-3dd1-45e3-aa9d-cdbdf3b6f24e",
                     "principalIdDisplayName": "Support Request Contributor"
                 },
@@ -37,7 +42,7 @@
                     "principalId": "1f4d1d1f-653f-4799-90f3-aa1cabf5f338", 
                     "roleDefinitionId": "f7b75c60-3036-4b75-91c3-6b41c27c1689",
                     "principalIdDisplayName": "Reservation Purchaser"
-                }
+                }           
             ]
         } 
     }

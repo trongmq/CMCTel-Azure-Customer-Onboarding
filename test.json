@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "mspOfferName": {
+            "value": "CMC Telecom Managed Services"
+        },
+        "mspOfferDescription": {
+            "value": "CMC Telecom trien khai sau Billing"
+        },
+        "managedByTenantId": {
+            "value": "531ff7cb-d1ee-4fd7-921b-d3df413aa03a"
+        },
+        "authorizations": {
+            "value": [
+                { 
+                    "principalId": "1f4d1d1f-653f-4799-90f3-aa1cabf5f338", 
+                    "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c",
+                    "principalIdDisplayName": "Contributor"
+                }     
+            ]
+        } 
+    }
+}
